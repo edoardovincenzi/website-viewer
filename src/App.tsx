@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
-import { IFrame } from './atoms';
-import { IFrameWithLabel, InsertLink } from './molecules';
+import { InsertLink } from './molecules';
 import { ThreeTypesIFrame } from './organisms';
+import { IoMdSettings } from 'react-icons/io';
+import { Modal } from './atoms';
 
 export interface ISize {
   mobile: string;
@@ -23,6 +24,7 @@ function App() {
   const [width, setWidth] = useState<ISize>(initialValueWidth);
   const [height, setHeight] = useState<ISize>(initialValueHeight);
   const [src, setSrc] = useState<string>('');
+  const [openModalSetting, setOpenModalSetting] = useState(false);
   const textInput = useRef<HTMLInputElement | null>(null);
 
   const handleClick = (
@@ -35,8 +37,21 @@ function App() {
 
   return (
     <div className="container mx-auto">
-      <InsertLink textInput={textInput} fnButton={handleClick} />
-      <ThreeTypesIFrame src={src} width={width} height={height} />
+      <IoMdSettings
+        className="absolute text-5xl cursor-pointer top-8 right-4 z-50"
+        onClick={() => setOpenModalSetting((state) => !state)}
+      />
+      <div
+        className={
+          openModalSetting
+            ? 'pointer-events-none h-screen m-0 overflow-hidden'
+            : ''
+        }
+      >
+        <InsertLink textInput={textInput} fnButton={handleClick} />
+        <ThreeTypesIFrame src={src} width={width} height={height} />
+      </div>
+      <Modal open={openModalSetting} setOpen={setOpenModalSetting} />
     </div>
   );
 }

@@ -11,7 +11,7 @@ interface IProps {
 const ThreeTypesIFrame = ({ src, width, height }: IProps) => {
   return (
     <div className="flex flex-col gap-4 items-center justify-center">
-      <div className="flex gap-4 items-center justify-between w-full">
+      <div className="flex gap-4 flex-wrap items-center justify-between w-full">
         <IFrameWithLabel
           id="mobile"
           src={src}

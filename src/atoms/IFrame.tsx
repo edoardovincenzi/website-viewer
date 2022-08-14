@@ -7,6 +7,7 @@ interface IProps {
   width: string;
   resize?: 'both' | 'vertical' | 'horizontal' | 'none';
   style?: Object;
+  className?: string;
 }
 
 const IFrame = ({
@@ -15,6 +16,7 @@ const IFrame = ({
   height = '851px',
   width,
   resize = 'none',
+  className = '',
   style = {},
 }: IProps) => {
   return (
@@ -23,6 +25,7 @@ const IFrame = ({
       style={{ height, width, resize, ...style }}
       title="web-site"
       src={src}
+      className={`${className} outline-dashed hover:outline-pink-500`}
     >
       IFrame
     </iframe>
