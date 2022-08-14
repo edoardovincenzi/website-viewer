@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { InsertLink } from './molecules';
-import { ThreeTypesIFrame } from './organisms';
+import { Modal, ThreeTypesIFrame } from './organisms';
 import { IoMdSettings } from 'react-icons/io';
-import { Modal } from './atoms';
 
 export interface ISize {
   mobile: string;
@@ -34,6 +33,7 @@ function App() {
   ) => {
     if (textInput && textInput.current) {
       setSrc(textInput.current.value);
+      textInput.current.value = '';
     }
   };
 
@@ -50,10 +50,18 @@ function App() {
             : ''
         }
       >
-        <InsertLink textInput={textInput} fnButton={handleClick} />
+        <InsertLink refInput={textInput} fnButton={handleClick} />
+        <h4 className="text-center text-xl">{src}</h4>
         <ThreeTypesIFrame src={src} width={width} height={height} />
       </div>
-      <Modal open={openModalSetting} setOpen={setOpenModalSetting} />
+      <Modal
+        open={openModalSetting}
+        setOpen={setOpenModalSetting}
+        width={width}
+        setWidth={setWidth}
+        height={height}
+        setHeight={setHeight}
+      />
     </div>
   );
 }

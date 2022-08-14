@@ -7,7 +7,7 @@ interface IProps {
   attributes?: Object;
   style?: Object;
   className?: string;
-  textInput?: React.MutableRefObject<HTMLInputElement | null>;
+  refInput?: React.MutableRefObject<HTMLInputElement | null>;
 }
 
 const Input = ({
@@ -17,14 +17,14 @@ const Input = ({
   attributes,
   style,
   className = '',
-  textInput,
+  refInput,
 }: IProps) => {
   return (
     <input
       onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) =>
         event.key === 'Enter' ? console.log('Enter') : null
       }
-      ref={textInput}
+      ref={refInput}
       className={`${className} border-2 border-black rounded-md p-4`}
       type={type}
       name={name}

@@ -3,14 +3,14 @@ import { Button, Input } from '../atoms';
 
 interface IProps {
   fnButton: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  textInput?: React.MutableRefObject<HTMLInputElement | null>;
+  refInput?: React.MutableRefObject<HTMLInputElement | null>;
 }
 
-const InsertLink = ({ fnButton, textInput }: IProps) => {
+const InsertLink = ({ fnButton, refInput }: IProps) => {
   return (
     <div className="w-full flex justify-center my-8">
       <Input
-        textInput={textInput}
+        refInput={refInput}
         attributes={{ placeholder: 'Enter your site link' }}
       />
       <Button className="ml-4" onClickFn={fnButton} label="Click me" />

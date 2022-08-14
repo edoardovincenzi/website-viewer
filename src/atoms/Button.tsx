@@ -11,7 +11,7 @@ const Button = ({ label, onClickFn, style = {}, className = '' }: IProps) => {
     <button
       style={style}
       onClick={onClickFn}
-      className={`${className} transition duration-300 ease-in-out delay-150 border-2 border-black rounded-md p-4 hover:bg-black hover:text-white `}
+      className={`${className} transition duration-200 ease-in-out delay-150 border-2 border-black rounded-md p-4 hover:bg-black hover:text-white `}
     >
       {label}
     </button>
