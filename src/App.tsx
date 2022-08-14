@@ -23,7 +23,9 @@ function App() {
   };
   const [width, setWidth] = useState<ISize>(initialValueWidth);
   const [height, setHeight] = useState<ISize>(initialValueHeight);
-  const [src, setSrc] = useState<string>('');
+  const [src, setSrc] = useState<string>(
+    'https://edoardovincenzi.netlify.app/'
+  );
   const [openModalSetting, setOpenModalSetting] = useState(false);
   const textInput = useRef<HTMLInputElement | null>(null);
 
@@ -44,7 +46,7 @@ function App() {
       <div
         className={
           openModalSetting
-            ? 'pointer-events-none h-screen m-0 overflow-hidden'
+            ? 'pointer-events-none h-screen m-0 overflow-hidden p-4'
             : ''
         }
       >
