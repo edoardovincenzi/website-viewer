@@ -1,40 +1,42 @@
-import React, { useState } from 'react';
-import { Button, IFrame, Input } from './atoms';
+import React, { useRef, useState } from 'react';
+import { IFrame } from './atoms';
+import { IFrameWithLabel, InsertLink } from './molecules';
+import { ThreeTypesIFrame } from './organisms';
+
+export interface ISize {
+  mobile: string;
+  tablet: string;
+  web: string;
+}
 
 function App() {
-  const [height, setHeight] = useState<string>('600px');
-  const [width, setWidth] = useState<string>('1400px');
+  const initialValueWidth = {
+    mobile: '375px',
+    tablet: '768px',
+    web: '1024px',
+  };
+  const initialValueHeight = {
+    mobile: '851px',
+    tablet: '851px',
+    web: '851px',
+  };
+  const [width, setWidth] = useState<ISize>(initialValueWidth);
+  const [height, setHeight] = useState<ISize>(initialValueHeight);
+  const [src, setSrc] = useState<string>('');
+  const textInput = useRef<HTMLInputElement | null>(null);
+
   const handleClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    setHeight((state) => (state === '400px' ? '401px' : '400px'));
-    setWidth((state) => (state === '480px' ? '481px' : '480px'));
+    if (textInput && textInput.current) {
+      setSrc(textInput.current.value);
+    }
   };
 
   return (
     <div className="container mx-auto">
-      <Button label="Click me" onClickFn={handleClick} />
-      <Input attributes={{ placeholder: 'Inserisci il link del sito' }} />
-      <div className="flex flex-wrap gap-4 items-center justify-center">
-        <IFrame
-          src="https://edoardovincenzi.netlify.app/"
-          resize="both"
-          width={width}
-          style={{ padding: '10px', marginBottom: '4rem' }}
-        />
-        <IFrame
-          src="https://diegocorradi.netlify.app/"
-          resize="both"
-          width={width}
-          style={{ padding: '10px', marginBottom: '4rem' }}
-        />
-        <IFrame
-          src="https://portfolio-mattiaturi.vercel.app/"
-          resize="both"
-          width={width}
-          style={{ padding: '10px', marginBottom: '4rem' }}
-        />
-      </div>
+      <InsertLink textInput={textInput} fnButton={handleClick} />
+      <ThreeTypesIFrame src={src} width={width} height={height} />
     </div>
   );
 }

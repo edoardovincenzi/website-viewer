@@ -6,15 +6,26 @@ interface IProps {
   id?: string;
   attributes?: Object;
   style?: Object;
+  className?: string;
+  textInput?: React.MutableRefObject<HTMLInputElement | null>;
 }
 
-const Input = ({ type = 'text', name = '', id, attributes, style }: IProps) => {
+const Input = ({
+  type = 'text',
+  name = '',
+  id,
+  attributes,
+  style,
+  className = '',
+  textInput,
+}: IProps) => {
   return (
     <input
       onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) =>
         event.key === 'Enter' ? console.log('Enter') : null
       }
-      className="border-2 border-black rounded-md"
+      ref={textInput}
+      className={`${className} border-2 border-black rounded-md p-4`}
       type={type}
       name={name}
       id={id}
